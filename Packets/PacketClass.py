@@ -78,8 +78,6 @@ class UseItem:
 		self.itemUsePos.PrintString()
 		print("time", self.time, "useType", self.useType)
 
-
-
 class BuyResult:
 
 	""" sent by server to inform client what happened after sending Buy packet """
@@ -112,6 +110,17 @@ class InvResult:
 
 	def PrintString(self):
 		print("result:", self.result)
+
+class UpdateAck:
+
+	def __init__(self):
+		pass
+
+	def read(self, data):
+		pass
+	
+	def write(self, writer):
+		pass
 
 class Hello:
 

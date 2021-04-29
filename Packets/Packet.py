@@ -143,6 +143,9 @@ def CreatePacket(c) -> Packet:
 	elif isinstance(c, Load):
 		packetID = PacketTypes.Load
 
+	elif isinstance(c, UpdateAck):
+		packetID = PacketTypes.Message
+
 	# write body of packet
 	c.write(writer)
 	# write the header
