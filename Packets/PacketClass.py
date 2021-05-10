@@ -48,6 +48,10 @@ class Move:
 			self.records.append(m)
 
 	def PrintString(self):
+		self.newPosition.PrintString()
+		print("objectID", self.objectID, "tickID", self.tickID, "time", self.time)
+		for i in self.records:
+			i.PrintString()
 
 
 class WorldPosData:
