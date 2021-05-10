@@ -50,7 +50,7 @@ class Update:
 		for _ in range(length):
 			g = ObjectData()
 			g.parseFromInput(reader)
-			self.tiles.append(g)
+			self.newObjects.append(g)
 		length = reader.ReadShort()
 		for _ in range(length):
 			self.drops.append(reader.ReadInt())
