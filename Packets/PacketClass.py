@@ -1,6 +1,64 @@
 from .PacketTypes import PacketTypes
 from .PacketReader import PacketReader
 
+class GroundTileData:
+	
+	def __init__(self):
+		self.x = 0
+		self.y = 0
+		self.type = 0
+
+	def parseFromInput(self, reader):
+		self.x = reader.ReadShort()
+		self.y = reader.ReadShort()
+		self.type = reader.ReadUnsignedShort()
+
+	def PrintString(self):
+		print("x", self.x, "y", self.y, "type", self.type)
+
+class ObjectData:
+
+	def __init__(self):
+		self.objectType = 0
+		self.objectStatusData = ObjectStatusData()
+
+	def parseFromInput(self, reader):
+		self.objectType = reader.ReadUnsignedShort()
+		self.objectStatusData.parse(reader)
+
+	print("objectType", self.objectType)
+	self.objectStatusData.PrintString()
+
+class Update:
+
+	""" sent by server to inform client of new tiles, objects, and drops """
+
+	def __init__(self):
+		self.tiles = []
+		self.newObjects = []
+		self.drops = []
+
+	def read(self, data):
+		reader = PacketReader(data)
+		length = reader.ReadShort()
+		for _ in range(length):
+			g = GroundTileData()
+			g.parseFromInput(reader)
+			self.tiles.append(g)
+		length = reader.ReadShort()
+		for _ in range(length):
+			g = ObjectData()
+			g.parseFromInput(reader)
+			self.tiles.append(g)
+		length = reader.ReadShort()
+		for _ in range(length):
+			self.drops.append(reader.ReadInt())
+
+	def PrintString(self):
+		print(len(self.tiles), "tiles," len(self.newObjects), "newObjects," len(self.drops), "drops")
+		for i in self.newObjects:
+			i.PrintString()
+
 class MoveRecord:
 
 	"""move pos @ time"""
