@@ -55,7 +55,7 @@ class Update:
 			self.drops.append(reader.ReadInt())
 
 	def PrintString(self):
-		print(len(self.tiles), "tiles," len(self.newObjects), "newObjects," len(self.drops), "drops")
+		print(len(self.tiles), "tiles,", len(self.newObjects), "newObjects,", len(self.drops), "drops")
 		for i in self.newObjects:
 			i.PrintString()
 
