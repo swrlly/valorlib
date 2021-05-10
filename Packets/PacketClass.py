@@ -47,6 +47,15 @@ class Move:
 			m.parseFromInput(reader)
 			self.records.append(m)
 
+	def write(self, writer):
+		writer.WriteInt(self.objectID)
+		writer.WriteInt(self.tickID)
+		writer.WriteInt(self.time)
+		self.newPosition.write(writer)
+		writer.WriteShort(len(self.records))
+		for i in records:
+			i.write(writer)
+
 	def PrintString(self):
 		self.newPosition.PrintString()
 		print("objectID", self.objectID, "tickID", self.tickID, "time", self.time)
