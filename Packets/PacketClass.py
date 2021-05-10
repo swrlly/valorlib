@@ -26,8 +26,9 @@ class ObjectData:
 		self.objectType = reader.ReadUnsignedShort()
 		self.objectStatusData.parse(reader)
 
-	print("objectType", self.objectType)
-	self.objectStatusData.PrintString()
+	def PrintString(self):
+		print("objectType", self.objectType)
+		self.objectStatusData.PrintString()
 
 class Update:
 
