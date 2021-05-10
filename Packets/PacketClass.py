@@ -1,6 +1,55 @@
 from .PacketTypes import PacketTypes
 from .PacketReader import PacketReader
 
+class MoveRecord:
+
+	"""move pos @ time"""
+
+	def __init__(self):
+		self.time = 0
+		self.x = 0
+		self.y = 0
+
+	def parseFromInput(self, reader):
+		self.time = reader.ReadInt()
+		self.x = reader.ReadFloat()
+		self.y = reader.ReadFloat()
+
+	def write(self, writer):
+		writer.WriteInt(self.time)
+		writer.WriteFloat(self.x)
+		writer.WriteFloat(self.y)
+
+	def PrintString(self):
+		print("time:", self.time, "x:", self.x, "y:", self.y)
+
+class Move:
+
+	""" sent by client to move the character """
+
+	def __init__(self):
+		self.objectID = 0
+		self.tickID = 0
+		self.time = 0
+		self.newPosition = WorldPosData()
+		self.records = []
+
+	def read(self, data):
+		reader = PacketReader(data)
+		self.objectID = reader.ReadInt()
+		self.tickID = reader.ReadInt()
+		self.time = reader.ReadInt()
+		self.newPosition.parseCoords(reader)
+		length = reader.ReadShort()
+
+		for _ in range(length):
+			m = MoveRecord()
+			m.parseFromInput(reader)
+			self.records.append(m)
+
+	def PrintString(self):
+
+
 class WorldPosData:
 
 	"""x and y coords, floats"""
