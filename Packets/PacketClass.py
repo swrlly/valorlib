@@ -53,12 +53,13 @@ class Move:
 		writer.WriteInt(self.time)
 		self.newPosition.write(writer)
 		writer.WriteShort(len(self.records))
-		for i in records:
+		for i in self.records:
 			i.write(writer)
 
 	def PrintString(self):
 		self.newPosition.PrintString()
 		print("objectID", self.objectID, "tickID", self.tickID, "time", self.time)
+		print("records:")
 		for i in self.records:
 			i.PrintString()
 
