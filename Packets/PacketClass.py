@@ -216,6 +216,73 @@ class BuyResult:
 	def PrintString(self):
 		print("result", self.result, "resultString", self.resultString)
 
+class InvSwap:
+
+	def __init__(self):
+		self.time = 0
+		self.position = WorldPosData()
+		self.slotOne = SlotObjectData()
+		self.slotTwo = SlotObjectData()
+
+	def read(self, data):
+		reader = PacketReader(data)
+		self.time = reader.ReadInt()
+		self.position.parseCoords(reader)
+		self.slotOne.parseFromInput(reader)
+		self.slotTwo.parseFromInput(reader)
+
+	def write(self, writer):
+		writer.WriteInt(self.time)
+		self.position.write(writer)
+		self.slotOne.write(writer)
+		self.slotTwo.write(writer)
+
+	def PrintString(self):
+		print(
+			"time", self.time, 
+		)
+		self.position.PrintString()
+		self.slotOne.PrintString()
+		self.slotTwo.PrintString()
+
+class RenameItem:
+
+	def __init__(self):
+		self.slotOne = SlotObjectData()
+		self.slotTwo = SlotObjectData()
+		self.name = ""
+
+	def read(self, data):
+		reader = PacketReader(data)
+		self.slotOne.parseFromInput(reader)
+		self.slotTwo.parseFromInput(reader)
+		self.name = ""
+
+	def write(self, writer):
+		self.slotOne.write(writer)
+		self.slotTwo.write(writer)
+		writer.WriteString(self.name)
+
+	def PrintString(self):
+		self.slotOne.PrintString()
+		self.slotTwo.PrintString()
+		print(self.name)
+
+class InvDrop:
+
+	def __init__(self):
+		self.slotOne = SlotObjectData()
+
+	def read(self, data):
+		reader = PacketReader(data)
+		self.slotOne.parseFromInput(reader)
+
+	def write(self, writer):
+		self.slotOne.write(writer)
+
+	def PrintString(self):
+		self.slotOne.PrintString()
+
 class InvResult:
 
 	""" sent by server to ? """
@@ -1286,6 +1353,24 @@ class ObjectStatusData:
 
 
 class NewTick:
+
+	"""
+	Sent by server to
+	- Update locations of other players, enemies, or certain objects like portals
+	- Inform client of statdatas for each player, enemy, etc.
+	- Update rotating objects (such as marketplace items)
+	- Tell the client where the server thinks you are
+	- Tell the client stats about yourself:
+		- total fame on account
+		- total gold on account
+		- fortune_token_stat ? 
+		- total onrane on account
+		- total kantos
+		- total trial tokens
+		- hp
+		- prot, etc.
+
+	"""
 
 	def __init__(self):
 		self.tickID = 0

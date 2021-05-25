@@ -152,6 +152,15 @@ def CreatePacket(c) -> Packet:
 	elif isinstance(c, Update):
 		packetID = PacketTypes.Update
 
+	elif isinstance(c, InvSwap):
+		packetID = PacketTypes.InvSwap
+
+	elif isinstance(c, InvDrop):
+		packetID = PacketTypes.InvDrop
+
+	elif isinstance(c, RenameItem):
+		packetID = PacketTypes.RenameItem
+
 	# write body of packet
 	c.write(writer)
 	# write the header
