@@ -112,5 +112,6 @@ class PacketTypes:
     PotionStorageInteraction = 174
     Reskin = 15
     Text = 96
+    RenameItem = 175
 
     reverseDict = {x[1]: x[0] for x in locals().items() if isinstance(x[1], int)}
