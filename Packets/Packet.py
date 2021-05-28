@@ -161,6 +161,9 @@ def CreatePacket(c) -> Packet:
 	elif isinstance(c, RenameItem):
 		packetID = PacketTypes.RenameItem
 
+	elif isinstance(c, RequestTrade):
+		packetID = PacketTypes.RequestTrade
+
 	# write body of packet
 	c.write(writer)
 	# write the header

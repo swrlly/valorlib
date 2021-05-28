@@ -1241,6 +1241,19 @@ class Teleport:
 	def write(self, writer):
 		writer.WriteInt(self.objectID)
 
+class RequestTrade:
+
+	def __init__(self):
+		self.name = ""
+
+	def read(self, data):
+		reader = PacketReader(data)
+		self.name = reader.ReadString()
+
+	def write(self, writer):
+		writer.WriteString(self.name)
+
+
 class Text:
 
 	""" sent by server to display a message sent from the server """
