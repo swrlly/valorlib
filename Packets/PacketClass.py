@@ -13,6 +13,11 @@ class GroundTileData:
 		self.y = reader.ReadShort()
 		self.type = reader.ReadUnsignedShort()
 
+	def write(self, writer):
+		writer.WriteShort(self.x)
+		writer.WriteShort(self.y)
+		writer.WriteUnsignedShort(self.type)
+
 	def PrintString(self):
 		print("x", self.x, "y", self.y, "type", self.type)
 
@@ -25,6 +30,10 @@ class ObjectData:
 	def parseFromInput(self, reader):
 		self.objectType = reader.ReadUnsignedShort()
 		self.objectStatusData.parse(reader)
+
+	def write(self, writer):
+		writer.WriteUnsignedShort(self.objectType)
+		self.objectStatusData.write(writer)
 
 	def PrintString(self):
 		print("objectType", self.objectType)
@@ -54,6 +63,17 @@ class Update:
 		length = reader.ReadShort()
 		for _ in range(length):
 			self.drops.append(reader.ReadInt())
+
+	def write(self, writer):
+		writer.WriteShort(len(self.tiles))
+		for i in self.tiles:
+			i.write(writer)
+		writer.WriteShort(len(self.newObjects))
+		for i in self.newObjects:
+			i.write(writer)
+		writer.WriteShort(len(self.drops))
+		for i in self.drops:
+			writer.WriteInt(i)
 
 	def PrintString(self):
 		print(len(self.tiles), "tiles,", len(self.newObjects), "newObjects,", len(self.drops), "drops")
