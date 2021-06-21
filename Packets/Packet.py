@@ -47,7 +47,7 @@ def CreatePacket(c) -> Packet:
 	elif isinstance(c, UnboxRequest):
 		packetID = PacketTypes.UnboxRequest
 
-	elif isinstance(c, AOE):
+	elif isinstance(c, Aoe):
 		packetID = PacketTypes.Aoe
 
 	elif isinstance(c, RequestGamble):

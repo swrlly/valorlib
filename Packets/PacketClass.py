@@ -440,7 +440,7 @@ class Pong:
 	def PrintString(self):
 		print("serial", self.serial, "time", self.time)
 
-class AOE:
+class Aoe:
 
 	"""
 	Sent by server when an AOE bullet hits the ground
