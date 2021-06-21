@@ -167,6 +167,9 @@ def CreatePacket(c) -> Packet:
 	elif isinstance(c, Reconnect):
 		packetID = PacketTypes.Reconnect
 
+	elif isinstance(c, ShowEffect):
+		packetID = PacketTypes.ShowEffect
+
 	# write body of packet
 	c.write(writer)
 	# write the header
