@@ -1,6 +1,8 @@
 from .PacketTypes import PacketTypes
 from .PacketReader import PacketReader
 
+import time
+
 class GroundTileData:
 	
 	def __init__(self):
@@ -480,7 +482,7 @@ class Aoe:
 
 	def PrintString(self):
 		self.pos.PrintString()
-		print("radius", self.radius, "damage", self.damage, "effect", self.effect, "duration", self.duration, "origType", self.origType)
+		print(time.time(), "radius", self.radius, "damage", self.damage, "effect", self.effect, "duration", self.duration, "origType", self.origType)
 
 class GroundDamage:
 
@@ -1412,7 +1414,7 @@ class ShowEffect:
 		writer.WriteFloat(self.duration)
 
 	def PrintString(self):
-		print("effectType", self.effectType, "targetObjectID", self.targetObjectID, "color", self.color, "duration", self.duration)
+		print(time.time(), "effectType", self.effectType, "targetObjectID", self.targetObjectID, "color", self.color, "duration", self.duration)
 		self.pos1.PrintString()
 		self.pos2.PrintString()
 
@@ -1467,5 +1469,32 @@ class NewTick:
 	def PrintString(self):
 		print("tickid", self.tickID, "ticktime", self.tickTime, "len statuses / num objs", len(self.statuses))
 
+class Death:
 
+	def __init__(self):
+		self.accountID = ""
+		self.charID = 0
+		self.killedBy = ""
+		self.zombieID = 0
+		self.zombieType = 0
+		self.isZombie = False
+	
+	def read(packet, data):
+		reader = PacketReader(data)
+		self.accountID = reader.ReadString()
+		self.charID = reader.ReadInt()
+		self.killedBy = reader.ReadString()
+		self.zombieType = reader.ReadInt()
+		self.zombieID = reader.ReadInt()
+		self.isZombie = reader.ReadBoolean()
 
+	def write(packet, writer):
+		writer.WriteString(self.accountID)
+		writer.WriteInt(self.charID)
+		writer.WriteString(self.killedBy)
+		writer.WriteInt(self.zombieType)
+		writer.WriteInt(self.zombieID)
+		writer.WriteBoolean(self.isZombie)
+
+	def PrintString(self):
+		print(time.time(), "accountID", self.accountID, "charID", self.charID, "killedBy", self.killedBy)
