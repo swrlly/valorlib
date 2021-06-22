@@ -481,8 +481,8 @@ class Aoe:
 		writer.WriteUnsignedShort(self.origType)
 
 	def PrintString(self):
+		print("Aoe", time.time(), "radius", self.radius, "damage", self.damage, "effect", self.effect, "duration", self.duration, "origType", self.origType)
 		self.pos.PrintString()
-		print(time.time(), "radius", self.radius, "damage", self.damage, "effect", self.effect, "duration", self.duration, "origType", self.origType)
 
 class GroundDamage:
 
@@ -1414,7 +1414,7 @@ class ShowEffect:
 		writer.WriteFloat(self.duration)
 
 	def PrintString(self):
-		print(time.time(), "effectType", self.effectType, "targetObjectID", self.targetObjectID, "color", self.color, "duration", self.duration)
+		print("ShowEffect", time.time(), "effectType", self.effectType, "targetObjectID", self.targetObjectID, "color", self.color, "duration", self.duration)
 		self.pos1.PrintString()
 		self.pos2.PrintString()
 
@@ -1479,22 +1479,20 @@ class Death:
 		self.zombieType = 0
 		self.isZombie = False
 	
-	def read(self, packet, data):
+	def read(self, data):
 		reader = PacketReader(data)
 		self.accountID = reader.ReadString()
 		self.charID = reader.ReadInt()
 		self.killedBy = reader.ReadString()
 		self.zombieType = reader.ReadInt()
 		self.zombieID = reader.ReadInt()
-		self.isZombie = reader.ReadBoolean()
 
-	def write(self, packet, writer):
+	def write(self, writer):
 		writer.WriteString(self.accountID)
 		writer.WriteInt(self.charID)
 		writer.WriteString(self.killedBy)
 		writer.WriteInt(self.zombieType)
 		writer.WriteInt(self.zombieID)
-		writer.WriteBoolean(self.isZombie)
 
 	def PrintString(self):
-		print(time.time(), "accountID", self.accountID, "charID", self.charID, "killedBy", self.killedBy)
+		print("Death", time.time(), "accountID", self.accountID, "charID", self.charID, "killedBy", self.killedBy)
