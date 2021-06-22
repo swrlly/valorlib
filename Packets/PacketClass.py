@@ -1479,7 +1479,7 @@ class Death:
 		self.zombieType = 0
 		self.isZombie = False
 	
-	def read(packet, data):
+	def read(self, packet, data):
 		reader = PacketReader(data)
 		self.accountID = reader.ReadString()
 		self.charID = reader.ReadInt()
@@ -1488,7 +1488,7 @@ class Death:
 		self.zombieID = reader.ReadInt()
 		self.isZombie = reader.ReadBoolean()
 
-	def write(packet, writer):
+	def write(self, packet, writer):
 		writer.WriteString(self.accountID)
 		writer.WriteInt(self.charID)
 		writer.WriteString(self.killedBy)

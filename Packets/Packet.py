@@ -170,6 +170,9 @@ def CreatePacket(c) -> Packet:
 	elif isinstance(c, ShowEffect):
 		packetID = PacketTypes.ShowEffect
 
+	elif isinstance(c, Death):
+		packetID = PacketTypes.Death
+
 	# write body of packet
 	c.write(writer)
 	# write the header
