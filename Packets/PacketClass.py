@@ -757,6 +757,24 @@ class Buy:
 			"marketID", self.marketID, "type", self.type
 		)
 
+class Goto:
+
+	def __init__(self):
+		self.objectID = 0
+		self.pos = WorldPosData()
+
+	def read(self, data):
+		reader = PacketReader(data)
+		self.objectID = reader.ReadInt()
+		self.pos.parseCoords(reader)
+
+	def write(self, writer):
+		writer.WriteInt(self.objectID)
+		self.pos.write(writer)
+
+	def PrintString(self):
+		self.pos.PrintString()
+		print("objectID", self.objectID)	
 
 class MarketOffer:
 
