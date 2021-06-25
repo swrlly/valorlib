@@ -144,7 +144,7 @@ def CreatePacket(c) -> Packet:
 		packetID = PacketTypes.Load
 
 	elif isinstance(c, UpdateAck):
-		packetID = PacketTypes.Message
+		packetID = PacketTypes.UpdateAck
 
 	elif isinstance(c, Move):
 		packetID = PacketTypes.Move

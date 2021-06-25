@@ -322,6 +322,21 @@ class InvResult:
 	def PrintString(self):
 		print("result:", self.result)
 
+class GotoAck:
+
+	def __init__(self):
+		self.time = 0
+
+	def read(self, data):
+		reader = PacketReader(data)
+		self.time = reader.ReadInt()
+
+	def write(self, writer):
+		writer.WriteInt(self.time)
+
+	def PrintString(self):
+		print("time", self.time)
+
 class UpdateAck:
 
 	def __init__(self):

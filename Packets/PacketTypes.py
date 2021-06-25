@@ -4,7 +4,7 @@ class PacketTypes:
     PlayerShoot = 66
     Move = 16       
     PlayerText = 47
-    Message = 91
+    UpdateAck = 91
     InvSwap = 25
     UseItem = 1
     Hello = 9
