@@ -27,15 +27,17 @@ class PacketWriter:
 		self.buffer += struct.pack(">f", data)
 
 	def WriteString(self, data):
+		# sanitize data against unicode
 		self.WriteShort(len(data))
 		if type(data) == str:
-			self.buffer += struct.pack(">{}s".format(len(data)), bytearray([ord(x) for x in data]))
+			self.buffer += struct.pack(">{}s".format(len(data)), bytearray([ord(x) if 0 < ord(x) < 256 else 32 for x in data]))
 		else:
 			self.buffer += struct.pack(">{}s".format(len(data)), data)
 
 	def WriteStringBytes(self, data):
+		# sanitize data against unicode
 		if type(data) == str:
-			self.buffer += struct.pack(">{}s".format(len(data)), bytearray([ord(x) for x in data]))
+			self.buffer += struct.pack(">{}s".format(len(data)), bytearray([ord(x) if 0 < ord(x) < 256 else 32 for x in data]))
 		else:
 			self.buffer += struct.pack(">{}s".format(len(data)), data)
 
