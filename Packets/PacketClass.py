@@ -322,6 +322,21 @@ class InvResult:
 	def PrintString(self):
 		print("result:", self.result)
 
+class GotoAck:
+
+	def __init__(self):
+		self.time = 0
+
+	def read(self, data):
+		reader = PacketReader(data)
+		self.time = reader.ReadInt()
+
+	def write(self, writer):
+		writer.WriteInt(self.time)
+
+	def PrintString(self):
+		print("time", self.time)
+
 class UpdateAck:
 
 	def __init__(self):
@@ -742,6 +757,24 @@ class Buy:
 			"marketID", self.marketID, "type", self.type
 		)
 
+class Goto:
+
+	def __init__(self):
+		self.objectID = 0
+		self.pos = WorldPosData()
+
+	def read(self, data):
+		reader = PacketReader(data)
+		self.objectID = reader.ReadInt()
+		self.pos.parseCoords(reader)
+
+	def write(self, writer):
+		writer.WriteInt(self.objectID)
+		self.pos.write(writer)
+
+	def PrintString(self):
+		self.pos.PrintString()
+		print("objectID", self.objectID)	
 
 class MarketOffer:
 

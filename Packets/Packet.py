@@ -144,7 +144,7 @@ def CreatePacket(c) -> Packet:
 		packetID = PacketTypes.Load
 
 	elif isinstance(c, UpdateAck):
-		packetID = PacketTypes.Message
+		packetID = PacketTypes.UpdateAck
 
 	elif isinstance(c, Move):
 		packetID = PacketTypes.Move
@@ -172,6 +172,12 @@ def CreatePacket(c) -> Packet:
 
 	elif isinstance(c, Death):
 		packetID = PacketTypes.Death
+
+	elif isinstance(c, GotoAck):
+		packetID = PacketTypes.GotoAck
+
+	elif isinstance(c, Goto):
+		packetID = PacketTypes.Goto
 
 	# write body of packet
 	c.write(writer)
