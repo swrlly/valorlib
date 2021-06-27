@@ -604,7 +604,6 @@ class EnemyShoot:
 		self.pos.parseCoords(reader)
 		self.angle = reader.ReadFloat()
 		self.damage = reader.ReadShort()
-		print(reader.BytesLeft())
 		if reader.BytesLeft() > 0:
 			self.numShots = reader.ReadByte()
 			self.angleInc = reader.ReadFloat()
