@@ -593,7 +593,7 @@ class EnemyShoot:
 		self.pos = WorldPosData()
 		self.angle = 0
 		self.damage = 0
-		self.numShots = 0
+		self.numShots = 1
 		self.angleInc = 0
 
 	def read(self, data):
@@ -604,8 +604,13 @@ class EnemyShoot:
 		self.pos.parseCoords(reader)
 		self.angle = reader.ReadFloat()
 		self.damage = reader.ReadShort()
-		self.numShots = reader.ReadByte()
-		self.angleInc = reader.ReadFloat()
+		print(reader.BytesLeft())
+		if reader.BytesLeft() > 0:
+			self.numShots = reader.ReadByte()
+			self.angleInc = reader.ReadFloat()
+		else:
+			self.numShots = 1
+			self.angleInc = 0
 
 	def write(self, writer):
 		writer.WriteByte(self.bulletID)

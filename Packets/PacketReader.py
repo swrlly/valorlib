@@ -7,6 +7,9 @@ class PacketReader:
 		self.index = 0
 		self.buffer = data
 
+	def BytesLeft(self):
+		return len(self.buffer) - self.index
+
 	def ReadByte(self):
 		self.index += 1
 		return self.buffer[self.index - 1]
