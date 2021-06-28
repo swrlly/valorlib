@@ -1,26 +1,29 @@
-from .PacketWriter import PacketWriter
 from .PacketClass import *
+from .PacketWriter import PacketWriter
 from .PacketTypes import PacketTypes
 
+from .incoming.__init__ import *
+from .outgoing.__init__ import *
+
 class Packet:
-
-
 
 	def __init__(self, header, data, ID):
 		self.header = header
 		self.data = data
 		self.ID = ID
 
+	"""
+	Converts a bytearray into the RotMG packet format. Unencrypted.
+	"""
 	def format(self):
 		return self.header + self.data
-
 
 """
 Create packet logic
 """
 def CreatePacket(c) -> Packet:
 	"""
-	c : packetclass
+	c : Instance of a particular PacketClass
 	"""
 
 	writer = PacketWriter()
