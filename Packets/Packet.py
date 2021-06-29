@@ -1,4 +1,3 @@
-from .PacketClass import *
 from .PacketWriter import PacketWriter
 from .PacketTypes import PacketTypes
 
