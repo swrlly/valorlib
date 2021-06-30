@@ -1,5 +1,5 @@
 from ..PacketReader import PacketReader
-from ..DataStructures import WorldPosData
+from ..DataStructures import WorldPosData, MoveRecord
 
 class Move:
 
