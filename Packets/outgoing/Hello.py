@@ -10,8 +10,7 @@ class Hello:
 		self.buildVersion = ""
 		self.gameID = 0
 		self.guid = ""
-		self.password = ""
-		self.secret = ""
+		self.loginToken = ""
 		self.keyTime = 0
 		self.key = bytearray()
 		self.mapJSON = ""
@@ -22,8 +21,7 @@ class Hello:
 		self.buildVersion = reader.ReadString()
 		self.gameID = reader.ReadInt()
 		self.guid = reader.ReadString()
-		self.password = reader.ReadString()
-		self.secret = reader.ReadString()
+		self.loginToken = reader.ReadString()
 		self.keyTime = reader.ReadInt()
 		length = reader.ReadShort()
 		self.key = [reader.ReadByte() for _ in range(length)]
@@ -35,8 +33,7 @@ class Hello:
 		writer.WriteString(self.buildVersion)
 		writer.WriteInt(self.gameID)
 		writer.WriteString(self.guid)
-		writer.WriteString(self.password)
-		writer.WriteString(self.secret)
+		writer.WriteString(self.loginToken)
 		writer.WriteInt(self.keyTime)
 		writer.WriteShort(len(self.key))
 		for byte in self.key:
@@ -46,5 +43,5 @@ class Hello:
 		writer.WriteInt(self.cliBytes)
 
 	def PrintString(self):
-		print("buildVersion", self.buildVersion, "gameID", self.gameID, "guid", self.guid, "password", self.password,
-			"secret", self.secret, "keyTime", self.keyTime, "key", self.key, "mapJSON", self.mapJSON, "cliBytes", self.cliBytes)
+		print("buildVersion", self.buildVersion, "gameID", self.gameID, "loginToken", self.loginToken,
+			"keyTime", self.keyTime, "key", self.key, "mapJSON", self.mapJSON, "cliBytes", self.cliBytes)
