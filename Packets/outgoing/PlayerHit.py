@@ -14,11 +14,11 @@ class PlayerHit:
 
 	def read(self, data):
 		reader = PacketReader(data)
-		self.bulletID = reader.ReadByte()
+		self.bulletID = reader.ReadInt()
 		self.objectID = reader.ReadInt()
 
 	def write(self, writer):
-		writer.WriteByte(self.bulletID)
+		writer.WriteInt(self.bulletID)
 		writer.WriteInt(self.objectID)
 
 	def PrintString(self):
