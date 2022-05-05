@@ -20,7 +20,7 @@ class EnemyShoot:
 
 	def read(self, data):
 		reader = PacketReader(data)
-		self.bulletID = reader.ReadByte()
+		self.bulletID = reader.ReadInt()
 		self.ownerID = reader.ReadInt()
 		self.bulletType = reader.ReadByte()
 		self.pos.parseCoords(reader)
@@ -34,7 +34,7 @@ class EnemyShoot:
 			self.angleInc = 0
 
 	def write(self, writer):
-		writer.WriteByte(self.bulletID)
+		writer.WriteInt(self.bulletID)
 		writer.WriteInt(self.ownerID)
 		writer.WriteByte(self.bulletType)
 		self.pos.write(writer)

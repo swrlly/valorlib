@@ -17,14 +17,14 @@ class PlayerShoot:
 	def read(self, data):
 		reader = PacketReader(data)
 		self.time = reader.ReadInt()
-		self.bulletID = reader.ReadByte()
+		self.bulletID = reader.ReadInt()
 		self.containerType = reader.ReadShort()
 		self.pos.parseCoords(reader)
 		self.angle = reader.ReadFloat()
 
 	def write(self, writer):
 		writer.WriteInt(self.time)
-		writer.WriteByte(self.bulletID)
+		writer.WriteInt(self.bulletID)
 		writer.WriteShort(self.containerType)
 		self.pos.write(writer)
 		writer.WriteFloat(self.angle)

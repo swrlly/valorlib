@@ -17,13 +17,13 @@ class EnemyHit:
 	def read(self, data):
 		reader = PacketReader(data)
 		self.time = reader.ReadInt()
-		self.bulletID = reader.ReadByte()
+		self.bulletID = reader.ReadInt()
 		self.targetID = reader.ReadInt()
 		self.kill = reader.ReadBoolean()
 
 	def write(self, writer):
 		writer.WriteInt(self.time)
-		writer.WriteByte(self.bulletID)
+		writer.WriteInt(self.bulletID)
 		writer.WriteInt(self.targetID)
 		writer.WriteBoolean(self.kill)
 
