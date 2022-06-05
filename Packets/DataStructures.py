@@ -129,7 +129,7 @@ class StatData:
 		self.strStatValue = ""
 
 	def isStringStat(self, x):
-		if x == 31 or x == 62 or x == 38 or x == 54 or x == 127 or (8 <= x <= 19) or (71 <= x <= 78) or x == 34:
+		if x == 31 or x == 62 or x == 38 or x == 54 or x == 127 or (8 <= x <= 19) or (71 <= x <= 78) or x == 34 or x == 25:
 			return True
 
 	def parse(self, reader):
