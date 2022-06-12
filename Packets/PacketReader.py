@@ -13,16 +13,6 @@ class PacketReader:
 	def ReadByte(self):
 		self.index += 1
 		return self.buffer[self.index - 1]
-		# 
-		"""
-		if not isinstance(self.buffer[self.index], bytes):
-			self.index += 1
-			return self.buffer[self.index - 1]
-		tmp = struct.unpack(">B", self.buffer[self.index])[0]
-		print("Read byte: ", tmp)
-		self.index += 1
-		return tmp
-		"""
 
 	def ReadFloat(self):
 		tmp = struct.unpack(">f", self.buffer[self.index : self.index + 4])[0]
@@ -31,25 +21,21 @@ class PacketReader:
 
 	def ReadInt(self):
 		tmp = struct.unpack(">i", self.buffer[self.index : self.index + 4])[0]
-		#print("Read: ", tmp)
 		self.index += 4
 		return tmp
 
 	def ReadUnsignedInt(self):
 		tmp = struct.unpack(">I", self.buffer[self.index : self.index + 4])[0]
-		#print("Read: ", tmp)
 		self.index += 4
 		return tmp
 		
 	def ReadBoolean(self):
 		tmp = struct.unpack(">?", self.buffer[self.index : self.index + 1])[0]
-		#print("Read: ", tmp)
 		self.index += 1
 		return tmp
 
 	def ReadShort(self):
 		tmp = struct.unpack(">h", self.buffer[self.index : self.index + 2])[0]
-		#print("Read: ", tmp)
 		self.index += 2
 		return tmp
 
