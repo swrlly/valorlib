@@ -1,8 +1,8 @@
 class PacketTypes:
     # print("\n".join([re.search("\.toMessage\(.+?\)", x).group()[11:-1] + " = " + re.search("\.map\(.+?\)", x).group()[5:-1]  for x in tmp.split("\n")]))
-    Create = 12     
+    Create = 12
     PlayerShoot = 66
-    Move = 16       
+    Move = 16
     PlayerText = 47
     UpdateAck = 91
     InvSwap = 25
@@ -23,6 +23,7 @@ class PacketTypes:
     SquareHit = 13
     GotoAck = 79
     GroundDamage = 98
+    GroundTeleporter = 178
     ChooseName = 23
     CreateGuild = 95
     GuildRemove = 49
@@ -43,7 +44,6 @@ class PacketTypes:
     OutgoingMessage = 51
     QuestRedeem = 37
     KeyInfoRequest = 151
-    ClaimDailyRewardMessage = 153
     LaunchRaid = 156
     SorForgeRequest = 159
     ForgeItem = 160
@@ -97,7 +97,6 @@ class PacketTypes:
     QuestFetchResponse = 65
     QuestRedeemResponse = 88
     KeyInfoResponse = 152
-    ClaimDailyRewardResponse = 154
     SetFocus = 108
     QueuePong = 112
     ServerFull = 110
@@ -110,8 +109,12 @@ class PacketTypes:
     ShowTrials = 172
     TrialsRequest = 173
     PotionStorageInteraction = 174
-    Reskin = 15
-    Text = 96
     RenameItem = 175
+    HomeDepotInteraction = 176
+    HomeDepotResult = 177
+    ClaimBattlePassItem = 179
+    MissionsReceive = 180
+    RespriteItem = 181
+    Text = 96
 
     reverseDict = {x[1]: x[0] for x in locals().items() if isinstance(x[1], int)}
